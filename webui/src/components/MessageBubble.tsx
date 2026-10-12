@@ -10,6 +10,7 @@ import {
 import { Activity, Check, ChevronRight, CircleAlert, Clock3, Copy, Link2, Quote, Wrench } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { DisclosureContent } from "@/components/ui/disclosure";
+import { StreamingLabelSheen } from "@/components/ui/streaming-label";
 
 import { AttachmentTile } from "@/components/AttachmentTile";
 import { SessionHandleLabel } from "@/components/SessionHandleLabel";
@@ -700,35 +701,6 @@ function ThinkingState() {
       <StreamingLabelSheen active>
         {t("message.reasoningStreaming", { defaultValue: "Thinking…" })}
       </StreamingLabelSheen>
-    </span>
-  );
-}
-
-/** L→R sheen on the glyphs themselves; inactive labels stay solid muted text. */
-export function StreamingLabelSheen({
-  children,
-  active,
-  className,
-}: {
-  children: ReactNode;
-  active: boolean;
-  className?: string;
-}) {
-  const sheenText =
-    typeof children === "string" || typeof children === "number"
-      ? String(children)
-      : undefined;
-  return (
-    <span className={cn("block min-w-0 overflow-hidden py-px", className)}>
-      <span
-        data-sheen-text={active ? sheenText : undefined}
-        className={cn(
-          "block w-fit max-w-full truncate pr-0.5 font-medium leading-normal",
-          active ? "streaming-text-sheen after:pr-0.5" : "text-muted-foreground",
-        )}
-      >
-        {children}
-      </span>
     </span>
   );
 }
